@@ -29,3 +29,18 @@ std::string download_data(const std::string& url) {
 
         curl_easy_cleanup(curl);
     }
+
+    curl_global_cleanup();
+    return readBuffer;
+}
+
+int main() {
+    std::string ticker = "AAPL";  // Acción a consultar (Ejemplo: Apple)
+    std::string url = "https://query1.finance.yahoo.com/v7/finance/download/" + ticker + 
+                     "?period1=1500000000&period2=1500000000&interval=1d&events=history";
+
+    std::string data = download_data(url);
+    std::cout << data << std::endl;  // Imprimir los datos obtenidos
+
+    return 0;
+}
